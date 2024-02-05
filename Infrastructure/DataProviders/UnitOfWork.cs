@@ -1,4 +1,5 @@
 ﻿using Application.DataProviderInterfaces;
+using Domain.Abstractions;
 using Domain.Entities;
 using Domain.Entities.OutboxMessage;
 

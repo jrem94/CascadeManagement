@@ -1,4 +1,5 @@
-﻿using Application.DTOs.WorkItems.TaskItems.Inbound;
+﻿using Api.Abstractions;
+using Application.DTOs.WorkItems.TaskItems.Inbound;
 using Application.WorkItems.TaskItems.Commands.CreateTaskItem;
 using Application.WorkItems.TaskItems.Commands.UpdateTaskItem;
 using Application.WorkItems.TaskItems.Queries.GetAllTaskItems;
@@ -8,12 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
-[Route("Api/[controller]")]
+[Route("[controller]")]
 public class TaskItemController : ApiController
 {
-    public TaskItemController(ISender sender) : base(sender)
-    {
-    }
+    public TaskItemController(ISender sender) : base(sender) { }
     
     [HttpPost("")]
     public async Task<IActionResult> CreateTaskItem([FromBody] CreateTaskItemDto taskItem, CancellationToken cancellationToken)

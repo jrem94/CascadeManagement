@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities.WorkItem;
+﻿using Domain.Abstractions;
+
+namespace Domain.Entities.WorkItem;
 
 public abstract class WorkItem : AggregateRoot
 {

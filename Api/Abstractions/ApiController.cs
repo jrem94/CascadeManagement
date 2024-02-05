@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace Api.Abstractions;
 
 [ApiController]
 public abstract class ApiController : ControllerBase

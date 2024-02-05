@@ -1,3 +1,5 @@
-﻿namespace Domain.DomainEvents.WorkItems.TaskItems;
+﻿using Domain.Abstractions;
+
+namespace Domain.DomainEvents.WorkItems.TaskItems;
 
 public sealed record TaskItemUpdatedDomainEvent(Guid Id) : IDomainEvent;

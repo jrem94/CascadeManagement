@@ -1,6 +1,7 @@
 ﻿using Domain.DomainEvents;
+using Domain.Entities;
 
-namespace Domain.Entities;
+namespace Domain.Abstractions;
 
 public abstract class AggregateRoot : Entity
 {

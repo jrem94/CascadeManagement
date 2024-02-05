@@ -1,4 +1,5 @@
-﻿using Domain.DomainEvents;
+﻿using Domain.Abstractions;
+using Domain.DomainEvents;
 using Newtonsoft.Json;
 
 namespace Domain.Entities.OutboxMessage;
