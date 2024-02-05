@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions;
 using Application.DataProviderInterfaces;
+using Application.DTOs.WorkItems.TaskItems;
 using Application.DTOs.WorkItems.TaskItems.Outbound;
 using Domain.Entities.WorkItem;
 
