@@ -1,5 +1,4 @@
-﻿using Application.Repositories;
-using Application.UnitOfWork;
+﻿using Application.DataProviderInterfaces;
 using Domain.Entities.OutboxMessage;
 using Domain.Entities.WorkItem;
 using Quartz;
@@ -9,20 +8,21 @@ namespace Infrastructure.BackgroundJobs;
 public sealed class OutboxMessageReaderJob : IJob
 {
     private readonly IOutboxMessageRepository _outboxMessageRepository;
-    private readonly IQueryRepository<OutboxMessage> _queryRepository;
+    private readonly IQueryableDataSource _queryableDataSource;
     private readonly IUnitOfWork _unitOfWork;
     
     public OutboxMessageReaderJob(IOutboxMessageRepository outboxMessageRepository, IUnitOfWork unitOfWork,
-        IQueryRepository<OutboxMessage> queryRepository)
+        IQueryableDataSource queryableDataSource)
     {
         _outboxMessageRepository = outboxMessageRepository;
-        _queryRepository = queryRepository;
+        _queryableDataSource = queryableDataSource;
         _unitOfWork = unitOfWork;
     }
     
     public async Task Execute(IJobExecutionContext context)
     {
-        var messages = await _queryRepository.GetAllAsync();
+        var messages = await _queryableDataSource
+            .Query<OutboxMessage>($"select * from OutboxMessage");
 
         foreach (var currentMessage in messages)
         {

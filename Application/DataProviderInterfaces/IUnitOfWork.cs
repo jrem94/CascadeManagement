@@ -1,4 +1,4 @@
-﻿namespace Application.UnitOfWork;
+﻿namespace Application.DataProviderInterfaces;
 
 public interface IUnitOfWork
 {

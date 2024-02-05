@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.OutboxMessage;
 
-namespace Application.Repositories;
+namespace Application.DataProviderInterfaces;
 
 public interface IOutboxMessageRepository
 {

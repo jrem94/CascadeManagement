@@ -1,7 +1,7 @@
-﻿using Application.Repositories;
+﻿using Application.DataProviderInterfaces;
 using Domain.Entities.OutboxMessage;
 
-namespace Infrastructure.Repositories;
+namespace Infrastructure.DataProviders;
 
 public class OutboxMessageRepository : IOutboxMessageRepository
 {

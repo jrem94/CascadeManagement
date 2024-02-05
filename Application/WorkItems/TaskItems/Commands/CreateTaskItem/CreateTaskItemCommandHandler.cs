@@ -1,6 +1,5 @@
 ﻿using Application.Abstractions;
-using Application.Repositories;
-using Application.UnitOfWork;
+using Application.DataProviderInterfaces;
 using Domain.Entities.WorkItem;
 using MediatR;
 

@@ -1,8 +1,6 @@
-﻿using MediatR;
+﻿namespace Domain.DomainEvents;
 
-namespace Domain.DomainEvents;
-
-public interface IDomainEvent: IRequest
+public interface IDomainEvent
 {
     
 }

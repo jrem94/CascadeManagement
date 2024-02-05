@@ -1,8 +1,7 @@
-﻿using Application.DTOs.WorkItems.TaskItems.Inbound;
-using Application.Repositories;
+﻿using Application.DataProviderInterfaces;
 using Domain.Entities.WorkItem;
 
-namespace Infrastructure.Repositories;
+namespace Infrastructure.DataProviders;
 
 public sealed class TaskItemRepository : ITaskItemRepository
 {

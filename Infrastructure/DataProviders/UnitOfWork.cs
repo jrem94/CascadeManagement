@@ -1,8 +1,8 @@
-﻿using Application.UnitOfWork;
+﻿using Application.DataProviderInterfaces;
 using Domain.Entities;
 using Domain.Entities.OutboxMessage;
 
-namespace Infrastructure.UnitOfWork;
+namespace Infrastructure.DataProviders;
 
 public sealed class UnitOfWork : IUnitOfWork
 {

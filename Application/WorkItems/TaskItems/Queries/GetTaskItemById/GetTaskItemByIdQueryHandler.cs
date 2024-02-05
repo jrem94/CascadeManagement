@@ -1,22 +1,23 @@
 ﻿using Application.Abstractions;
+using Application.DataProviderInterfaces;
 using Application.DTOs.WorkItems.TaskItems.Outbound;
-using Application.Repositories;
 using Domain.Entities.WorkItem;
 
 namespace Application.WorkItems.TaskItems.Queries.GetTaskItemById;
 
 public class GetTaskItemByIdQueryHandler : IQueryHandler<GetTaskItemByIdQuery, ClientTaskItemDto?>
 {
-    private readonly IQueryRepository<TaskItem> _queryRepository;
+    private readonly IQueryableDataSource _queryableDataSource;
     
-    public GetTaskItemByIdQueryHandler(IQueryRepository<TaskItem> queryRepository)
+    public GetTaskItemByIdQueryHandler(IQueryableDataSource queryableDataSource)
     {
-        _queryRepository = queryRepository;
+        _queryableDataSource = queryableDataSource;
     }
     
     public async Task<ClientTaskItemDto?> Handle(GetTaskItemByIdQuery request, CancellationToken cancellationToken)
     {
-        var taskItem = await _queryRepository.GetByIdAsync(request.Id);
+        var taskItem = await _queryableDataSource
+            .QuerySingle<TaskItem>($"select * from TaskItem where Id = {request.Id}");
 
         if (taskItem is null)
             throw new Exception($"No Task Item found with Id {request.Id}");
