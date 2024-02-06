@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Api.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class HealthCheckController : ControllerBase
+public class HealthCheckController : ApiController
 {
     [HttpGet("")]
     public async Task<IActionResult> GetHealthStatus()

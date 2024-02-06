@@ -1,56 +1,48 @@
 ﻿using Api.Abstractions;
-using Application.TaskItems.Commands.CreateTaskItem;
-using Application.TaskItems.Commands.UpdateTaskItem;
-using Application.TaskItems.DTOs.Inbound;
-using Application.TaskItems.Queries.GetAllTaskItems;
-using Application.TaskItems.Queries.GetTaskItemById;
-using MediatR;
+using Application.TaskItems;
+using Application.TaskItems.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
-[Route("[controller]s")]
 public class TaskItemController : ApiController
 {
-    public TaskItemController(ISender sender) : base(sender) { }
+    private readonly ITaskItemService _taskItemService;
     
-    [HttpPost("")]
-    public async Task<IActionResult> CreateTaskItem([FromBody] CreateTaskItemDto taskItem, CancellationToken cancellationToken)
+    public TaskItemController(ITaskItemService taskItemService)
     {
-        var command = new CreateTaskItemCommand(taskItem);
-
-        await Sender.Send(command, cancellationToken);
-
-        return Ok();
+        _taskItemService = taskItemService;
     }
     
-    [HttpPut("")]
-    public async Task<IActionResult> UpdateTaskItem([FromBody] UpdateTaskItemDto update, CancellationToken cancellationToken)
+    [HttpPost("")]
+    public async Task<IActionResult> CreateTaskItem([FromBody] TaskItemDto taskItemDto)
     {
-        var command = new UpdateTaskItemCommand(update);
+        var createdTaskItem = await _taskItemService.CreateTaskItem(taskItemDto);
 
-        await Sender.Send(command, cancellationToken);
+        return Ok(createdTaskItem);
+    }
+    
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateTaskItem([FromBody] TaskItemDto taskItemDto, Guid id)
+    {
+        var updatedTaskItem = await _taskItemService.UpdateTaskItem(id, taskItemDto);
 
-        return Ok();
+        return Ok(updatedTaskItem);
     }
     
     [HttpGet("")]
-    public async Task<IActionResult> GetAllTaskItems(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAllTaskItems()
     {
-        var query = new GetAllTaskItemsQuery();
+        var taskItems = await _taskItemService.GetAllTaskItems();
 
-        var response = await Sender.Send(query, cancellationToken);
-
-        return Ok(response);
+        return Ok(taskItems);
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetTaskItemById(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetTaskItemById(Guid id)
     {
-        var query = new GetTaskItemByIdQuery(id);
+        var taskItem = await _taskItemService.GetTaskItemById(id);
 
-        var response = await Sender.Send(query, cancellationToken);
-
-        return Ok(response);
+        return Ok(taskItem);
     }
 }

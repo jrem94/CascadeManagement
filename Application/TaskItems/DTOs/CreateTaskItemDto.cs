@@ -1,6 +1,6 @@
-﻿namespace Application.TaskItems.DTOs.Inbound;
+﻿namespace Application.TaskItems.DTOs;
 
-public sealed class CreateTaskItemDto
+public sealed record TaskItemDto
 {
     public string? Title { get; set; }
     

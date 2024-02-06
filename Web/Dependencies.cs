@@ -1,4 +1,5 @@
 ﻿using Application.InfrastructurePorts;
+using Application.TaskItems;
 using Infrastructure;
 using Infrastructure.BackgroundJobs;
 using Infrastructure.DataProviders;
@@ -15,6 +16,7 @@ public static class Dependencies
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IQueryableDataSource, QueryableDataSource>();
         services.AddScoped<ITaskItemRepository, TaskItemRepository>();
+        services.AddScoped<ITaskItemService, TaskItemService>();
         services.AddScoped<IOutboxMessageRepository, OutboxMessageRepository>();
         
         services.AddQuartz(options =>

@@ -4,12 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Abstractions;
 
 [ApiController]
+[Route("[controller]s")]
 public abstract class ApiController : ControllerBase
 {
-    protected readonly ISender Sender;
-
-    protected ApiController(ISender sender)
-    {
-        Sender = sender;
-    }
 }
