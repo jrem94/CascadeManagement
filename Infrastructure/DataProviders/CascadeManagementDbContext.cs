@@ -3,7 +3,7 @@ using Domain.Entities.WorkItem;
 using Infrastructure.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure;
+namespace Infrastructure.DataProviders;
 
 public class CascadeManagementDbContext : DbContext
 {
