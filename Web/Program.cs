@@ -5,20 +5,12 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("CascadeManagementConnectionString");
 
 builder.Services.AddMediatR(configuration =>
-    configuration.RegisterServicesFromAssemblies(
-        [
-            Domain.AssemblyReference.Assembly,
-            Application.AssemblyReference.Assembly
-        ]
-    ));
+    configuration.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly));
 builder.Services.AddControllers().AddApplicationPart(Api.AssemblyReference.Assembly);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-DomainDependencies.MapDependencies(builder.Services);
-ApplicationDependencies.MapDependencies(builder.Services);
-InfrastructureDependencies.MapDependencies(builder.Services, connectionString);
-ApiDependencies.MapDependencies(builder.Services);
+Dependencies.MapDependencies(builder.Services, connectionString);
 
 var app = builder.Build();
 

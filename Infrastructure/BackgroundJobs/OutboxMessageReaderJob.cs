@@ -1,4 +1,4 @@
-﻿using Application.DataProviderInterfaces;
+﻿using Application.InfrastructurePorts;
 using Domain.Entities.OutboxMessage;
 using Domain.Entities.WorkItem;
 using Quartz;
@@ -22,7 +22,7 @@ public sealed class OutboxMessageReaderJob : IJob
     public async Task Execute(IJobExecutionContext context)
     {
         var messages = await _queryableDataSource
-            .Query<OutboxMessage>($"select * from OutboxMessage");
+            .QueryList<OutboxMessage>($"select * from OutboxMessage");
 
         foreach (var currentMessage in messages)
         {

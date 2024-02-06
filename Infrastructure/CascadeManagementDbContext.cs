@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.OutboxMessage;
 using Domain.Entities.WorkItem;
-using Infrastructure.Configurations;
+using Infrastructure.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure;

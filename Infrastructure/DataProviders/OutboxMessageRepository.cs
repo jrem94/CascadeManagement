@@ -1,4 +1,4 @@
-﻿using Application.DataProviderInterfaces;
+﻿using Application.InfrastructurePorts;
 using Domain.Entities.OutboxMessage;
 
 namespace Infrastructure.DataProviders;

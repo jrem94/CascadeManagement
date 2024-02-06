@@ -1,15 +1,15 @@
 ﻿using Api.Abstractions;
-using Application.DTOs.WorkItems.TaskItems.Inbound;
-using Application.WorkItems.TaskItems.Commands.CreateTaskItem;
-using Application.WorkItems.TaskItems.Commands.UpdateTaskItem;
-using Application.WorkItems.TaskItems.Queries.GetAllTaskItems;
-using Application.WorkItems.TaskItems.Queries.GetTaskItemById;
+using Application.TaskItems.Commands.CreateTaskItem;
+using Application.TaskItems.Commands.UpdateTaskItem;
+using Application.TaskItems.DTOs.Inbound;
+using Application.TaskItems.Queries.GetAllTaskItems;
+using Application.TaskItems.Queries.GetTaskItemById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
-[Route("[controller]")]
+[Route("[controller]s")]
 public class TaskItemController : ApiController
 {
     public TaskItemController(ISender sender) : base(sender) { }
